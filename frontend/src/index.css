@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+/* Modo oscuro por clase .dark en <html> (se alterna desde el header) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Tokens de diseño MACAI: grafito industrial + naranja de seguridad */
+@theme {
+  --font-sans: "Barlow", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Barlow Condensed", "Barlow", ui-sans-serif, sans-serif;
+
+  --color-brand-50: #fff7ed;
+  --color-brand-100: #ffedd5;
+  --color-brand-200: #fed7aa;
+  --color-brand-400: #fb923c;
+  --color-brand-500: #f97316;
+  --color-brand-600: #ea580c;
+  --color-brand-700: #c2410c;
+  --color-brand-800: #9a3412;
+
+  --color-ink-50: #f6f6f4;
+  --color-ink-100: #ececea;
+  --color-ink-200: #d9d9d6;
+  --color-ink-300: #b5b5b0;
+  --color-ink-400: #8a8a85;
+  --color-ink-500: #65655f;
+  --color-ink-600: #4a4a45;
+  --color-ink-700: #33332f;
+  --color-ink-800: #1f1f1c;
+  --color-ink-850: #191917;
+  --color-ink-900: #121211;
+  --color-ink-950: #0b0b0a;
+}
+
+@layer base {
+  html { -webkit-tap-highlight-color: transparent; }
+  body {
+    @apply bg-ink-50 text-ink-800 antialiased dark:bg-ink-950 dark:text-ink-100;
+  }
+  h1, h2, h3, .font-display { font-family: var(--font-display); letter-spacing: 0.01em; }
+  :focus-visible { @apply outline-2 outline-offset-2 outline-brand-500; }
+}
+
+@utility card {
+  @apply rounded-xl border border-ink-200 bg-white dark:border-ink-800 dark:bg-ink-900;
+}
+@utility input {
+  @apply w-full rounded-lg border border-ink-200 bg-white px-3 py-2.5 text-sm text-ink-800 placeholder:text-ink-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 focus:outline-none disabled:bg-ink-100 disabled:text-ink-400 dark:border-ink-700 dark:bg-ink-850 dark:text-ink-100 dark:disabled:bg-ink-800;
+}
+@utility input-error {
+  @apply border-red-500 focus:border-red-500 focus:ring-red-500/20;
+}
+@utility label {
+  @apply mb-1 block text-sm font-medium text-ink-600 dark:text-ink-300;
+}
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-50;
+}
+@utility btn-primary {
+  @apply btn bg-brand-600 text-white hover:bg-brand-700 active:bg-brand-800;
+}
+@utility btn-dark {
+  @apply btn bg-ink-900 text-white hover:bg-ink-800 dark:bg-ink-100 dark:text-ink-900 dark:hover:bg-white;
+}
+@utility btn-ghost {
+  @apply btn border border-ink-200 bg-white text-ink-700 hover:bg-ink-100 dark:border-ink-700 dark:bg-ink-900 dark:text-ink-200 dark:hover:bg-ink-800;
+}
+@utility btn-danger {
+  @apply btn bg-red-600 text-white hover:bg-red-700;
+}
+@utility btn-sm {
+  @apply px-3 py-1.5 text-xs;
+}
+@utility table-base {
+  @apply w-full text-left text-sm;
+  & th { @apply border-b border-ink-200 px-3 py-2.5 text-xs font-semibold tracking-wide text-ink-500 uppercase dark:border-ink-800 dark:text-ink-400; }
+  & td { @apply border-b border-ink-100 px-3 py-2.5 align-middle dark:border-ink-800/70; }
+  & tbody tr { @apply hover:bg-ink-50 dark:hover:bg-ink-850; }
+}
+/* Patrón de franjas de taller para fondos de marca */
+@utility hazard {
+  background-image: repeating-linear-gradient(-45deg, rgb(234 88 12 / 0.9) 0 12px, rgb(18 18 17) 12px 24px);
+}
